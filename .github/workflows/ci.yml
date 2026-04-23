@@ -9,20 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v3
 
-    - uses: actions/setup-dotnet@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
 
     - name: Restore
-      working-directory: "UnitTestProject3/Нова папка/SeleniumWebDriver/UnitTestProject3"
-      run: dotnet restore
+      run: dotnet restore "UnitTestProject3/Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3.csproj"
 
     - name: Build
-      working-directory: "UnitTestProject3/Нова папка/SeleniumWebDriver/UnitTestProject3"
-      run: dotnet build --no-restore
+      run: dotnet build "UnitTestProject3/Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3.csproj" --no-restore
 
     - name: Test
-      working-directory: "UnitTestProject3/Нова папка/SeleniumWebDriver/UnitTestProject3"
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test "UnitTestProject3/Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3.csproj" --no-build --verbosity normal
