@@ -1,4 +1,4 @@
-name: .NET Framework Tests
+name: .NET Tests
 
 on:
   push:
@@ -11,18 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.0.x
 
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1
-
-    - name: Restore NuGet packages
-      run: nuget restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" -PackagesDirectory packages
+    - name: Restore
+      run: dotnet restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj"
 
     - name: Build
-      run: msbuild "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" /p:Configuration=Release
+      run: dotnet build "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --configuration Release
 
-    - name: Run Tests
-      run: |
-        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/bin/Release/UnitTestProject3.dll"
+    - name: Test
+      run: dotnet test "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --no-build
