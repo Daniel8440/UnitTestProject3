@@ -2,7 +2,7 @@ name: .NET Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
 
 jobs:
   build-and-test:
