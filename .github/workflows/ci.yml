@@ -8,10 +8,6 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: UnitTestProject3/UnitTestProject3
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -22,10 +18,10 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore
-      run: dotnet restore
+      run: dotnet restore UnitTestProject3/UnitTestProject3.csproj
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build UnitTestProject3/UnitTestProject3.csproj --no-restore
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test UnitTestProject3/UnitTestProject3.csproj --no-build --verbosity normal
