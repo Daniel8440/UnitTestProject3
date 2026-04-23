@@ -18,10 +18,10 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore
-      run: dotnet restore UnitTestProject3/UnitTestProject3.csproj
+      run: dotnet restore "UnitTestProject3/Нова папка/UnitTestProject3/UnitTestProject3.csproj"
 
     - name: Build
-      run: dotnet build UnitTestProject3/UnitTestProject3.csproj --no-restore
+      run: dotnet build "UnitTestProject3/Нова папка/UnitTestProject3/UnitTestProject3.csproj" --no-restore
 
     - name: Test
-      run: dotnet test UnitTestProject3/UnitTestProject3.csproj --no-build --verbosity normal
+      run: dotnet test "UnitTestProject3/Нова папка/UnitTestProject3/UnitTestProject3.csproj" --no-build --verbosity normal
