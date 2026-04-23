@@ -1,21 +1,31 @@
-steps:
-  - uses: actions/checkout@v3
+name: .NET CI
 
-  - name: DEBUG
-    run: ls -R
+on:
+  push:
+  pull_request:
 
-  - uses: actions/setup-dotnet@v3
-    with:
-      dotnet-version: 6.0.x
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-  - name: Restore
-    working-directory: UnitTestProject3/UnitTestProject3
-    run: dotnet restore
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
 
-  - name: Build
-    working-directory: UnitTestProject3/UnitTestProject3
-    run: dotnet build --no-restore
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
 
-  - name: Test
-    working-directory: UnitTestProject3/UnitTestProject3
-    run: dotnet test --no-build --verbosity normal
+    # 👇 DEBUG – показва цялата структура
+    - name: DEBUG
+      run: ls -R
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
