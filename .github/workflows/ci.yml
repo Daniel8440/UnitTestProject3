@@ -23,4 +23,4 @@ jobs:
       run: dotnet build "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --configuration Release
 
     - name: Test
-      run: dotnet test "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --no-build
+      run: dotnet test "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --configuration Release --no-build
