@@ -18,10 +18,10 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Restore
-        run: dotnet restore SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj
+        run: dotnet restore SeleniumWebDriver/UnitTestProject3/UnitTestProject3.csproj
 
       - name: Build
-        run: dotnet build SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj --no-restore
+        run: dotnet build SeleniumWebDriver/UnitTestProject3/UnitTestProject3.csproj --no-restore
 
       - name: Test
-        run: dotnet test SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj --no-build --verbosity normal
+        run: dotnet test SeleniumWebDriver/UnitTestProject3/UnitTestProject3.csproj --no-build --verbosity normal
