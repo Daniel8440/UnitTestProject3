@@ -18,11 +18,11 @@ jobs:
       uses: NuGet/setup-nuget@v1
 
     - name: Restore NuGet packages
-      run: nuget restore UnitTestProject3/UnitTestProject3.csproj
+      run: nuget restore UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj
 
     - name: Build
-      run: msbuild UnitTestProject3/UnitTestProject3.csproj /p:Configuration=Release
+      run: msbuild UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj /p:Configuration=Release
 
     - name: Run Tests
       run: |
-        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" UnitTestProject3\bin\Release\UnitTestProject3.dll
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\Extensions\TestPlatform\vstest.console.exe" UnitTestProject3/UnitTestProject3/bin/Release/UnitTestProject3.dll
