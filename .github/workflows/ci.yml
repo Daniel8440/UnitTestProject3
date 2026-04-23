@@ -9,16 +9,17 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1
 
     - name: Restore NuGet
-      run: nuget restore UnitTestProject3/UnitTestProject3.csproj
+      run: nuget restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj"
 
     - name: Build
-      run: msbuild UnitTestProject3/UnitTestProject3.csproj /p:Configuration=Release /p:Platform="AnyCPU"
+      run: msbuild "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" /p:Configuration=Release /p:Platform="AnyCPU"
 
     - name: Run Tests
-      run: vstest.console.exe UnitTestProject3/bin/Release/UnitTestProject3.dll
+      run: vstest.console.exe "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/bin/Release/UnitTestProject3.dll"
