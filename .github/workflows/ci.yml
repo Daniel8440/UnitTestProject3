@@ -17,15 +17,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
-    # 👇 DEBUG – показва цялата структура
-    - name: DEBUG
-      run: ls -R
-
     - name: Restore
-      run: dotnet restore
+      run: dotnet restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj"
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --no-restore
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --no-build --verbosity normal
