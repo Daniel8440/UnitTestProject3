@@ -6,22 +6,20 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest   # 👈 КЛЮЧОВО
 
     steps:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 6.0.x
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1.1
 
-    - name: Restore
-      run: dotnet restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj"
+    - name: Restore NuGet packages
+      run: nuget restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3.slnx"
 
     - name: Build
-      run: dotnet build "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --no-restore
+      run: msbuild "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3.slnx" /p:Configuration=Release
 
     - name: Test
-      run: dotnet test "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --no-build --verbosity normal
+      run: vstest.console.exe "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/bin/Release/UnitTestProject3.dll"
