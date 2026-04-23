@@ -1,14 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-  <Import Project="..\packages\MSTest.TestAdapter.4.2.1\build\net462\MSTest.TestAdapter.props" Condition="Exists('..\packages\MSTest.TestAdapter.4.2.1\build\net462\MSTest.TestAdapter.props')" />
-  <Import Project="..\packages\Microsoft.Testing.Extensions.Telemetry.2.2.1\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props" Condition="Exists('..\packages\Microsoft.Testing.Extensions.Telemetry.2.2.1\build\netstandard2.0\Microsoft.Testing.Extensions.Telemetry.props')" />
-  <Import Project="..\packages\Microsoft.Testing.Platform.MSBuild.2.2.1\build\Microsoft.Testing.Platform.MSBuild.props" Condition="Exists('..\packages\Microsoft.Testing.Platform.MSBuild.2.2.1\build\Microsoft.Testing.Platform.MSBuild.props')" />
-  <Import Project="..\packages\Microsoft.Testing.Platform.2.2.1\build\netstandard2.0\Microsoft.Testing.Platform.props" Condition="Exists('..\packages\Microsoft.Testing.Platform.2.2.1\build\netstandard2.0\Microsoft.Testing.Platform.props')" />
-  <Import Project="..\packages\Microsoft.NET.Test.Sdk.18.4.0\build\net462\Microsoft.NET.Test.Sdk.props" Condition="Exists('..\packages\Microsoft.NET.Test.Sdk.18.4.0\build\net462\Microsoft.NET.Test.Sdk.props')" />
-  <Import Project="..\packages\Microsoft.CodeCoverage.18.4.0\build\netstandard2.0\Microsoft.CodeCoverage.props" Condition="Exists('..\packages\Microsoft.CodeCoverage.18.4.0\build\netstandard2.0\Microsoft.CodeCoverage.props')" />
-  <Import Project="..\packages\NUnit3TestAdapter.6.2.0\build\net462\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.6.2.0\build\net462\NUnit3TestAdapter.props')" />
-  <Import Project="..\packages\NUnit.4.5.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.4.5.1\build\NUnit.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
 
   <PropertyGroup>
@@ -16,28 +8,33 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E9A9D485-367E-4919-A0B9-7F0853DD6188}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UnitTestProject3</RootNamespace>
     <AssemblyName>UnitTestProject3</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="ApiResponseDto.cs" />
-    <Compile Include="NoteDto.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests.cs" />
+    <Reference Include="System" />
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include=".github\workflows\cy.yml" />
-    <None Include="app.config" />
+    <Compile Include="SimpleNotesTests.cs" />
+    <Compile Include="ApiResponseDto.cs" />
+    <Compile Include="NoteDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
 
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-
 </Project>
