@@ -15,10 +15,10 @@ jobs:
       uses: microsoft/setup-msbuild@v1
 
     - name: Restore NuGet
-      run: nuget restore UnitTestProject3.csproj
+      run: nuget restore UnitTestProject3/UnitTestProject3.csproj
 
     - name: Build
-      run: msbuild UnitTestProject3.csproj /p:Configuration=Release /p:Platform="AnyCPU"
+      run: msbuild UnitTestProject3/UnitTestProject3.csproj /p:Configuration=Release /p:Platform="AnyCPU"
 
     - name: Run Tests
-      run: vstest.console.exe bin/Release/UnitTestProject3.dll
+      run: vstest.console.exe UnitTestProject3/bin/Release/UnitTestProject3.dll
