@@ -1,25 +1,24 @@
-name: .NET CI
+name: .NET Tests
 
 on:
   push:
-  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: windows-latest   # 👈 КЛЮЧОВО
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v1
 
-    - name: Restore NuGet packages
-      run: nuget restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3.slnx"
+    - name: Restore NuGet
+      run: nuget restore UnitTestProject3.sln
 
     - name: Build
-      run: msbuild "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3.slnx" /p:Configuration=Release
+      run: msbuild UnitTestProject3.sln /p:Configuration=Release /p:Platform="AnyCPU"
 
-    - name: Test
-      run: vstest.console.exe "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/bin/Release/UnitTestProject3.dll"
+    - name: Run Tests
+      run: vstest.console.exe **\bin\Release\UnitTestProject3.dll
