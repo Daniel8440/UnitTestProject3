@@ -12,14 +12,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
 
-    - name: Restore NuGet
-      run: nuget restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj"
+    - name: Restore
+      run: dotnet restore "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj"
 
     - name: Build
-      run: msbuild "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" /p:Configuration=Release /p:Platform="AnyCPU"
+      run: dotnet build "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --configuration Release
 
-    - name: Run Tests
-      run: vstest.console.exe "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/bin/Release/UnitTestProject3.dll"
+    - name: Test
+      run: dotnet test "Нова папка/SeleniumWebDriver/UnitTestProject3/UnitTestProject3/UnitTestProject3.csproj" --no-build --verbosity normal
