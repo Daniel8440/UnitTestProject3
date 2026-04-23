@@ -8,6 +8,10 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: SeleniumWebDriver/UnitTestProject3
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
